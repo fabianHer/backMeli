@@ -4,6 +4,6 @@
 # nmp install
 
 #Para correr el proyecto ejecutar comando:
-#nodemon
+# nodemon
 
 #Tener en cuenta el archivo .env (variables de entorno nombe y apellido)
