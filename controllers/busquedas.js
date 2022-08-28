@@ -1,11 +1,18 @@
+/** 
+ controlador búsqueda de productos
+ */
+
 const { response } = require('express');
 const fetch = require('node-fetch');
 
+
+//Consulta lo productos según el parámetor
 const getTodo = async(req , res = response ) => {
     const busqueda = req.params.busqueda;
     const categories =[];
     const items = [];
 
+//consulta el Api
    fetch(`https://api.mercadolibre.com/sites/MLA/search?q=${busqueda}`)
   .then(response => response.json())
   .then(data => {
@@ -13,9 +20,13 @@ const getTodo = async(req , res = response ) => {
     /** Procesar los datos **/
 
     const respuesta = data.results
+
+    //Extrae las categorias y las inserta en un arreglo
     respuesta.forEach(element => {
         categories.push(element.category_id)        
     });
+
+    //Extrae la información requeria y la inserta en un arreglo
     respuesta.forEach(element => {
         items.push(
             { 
@@ -28,7 +39,7 @@ const getTodo = async(req , res = response ) => {
             })        
     });
    
-
+//Contruye la respuesta con las variables de entorno (nombre y apellido) y los arreglos anteriores
     const datosRespuesta =[{
         author: { 
             name: process.env.NAME, 
@@ -37,7 +48,8 @@ const getTodo = async(req , res = response ) => {
         categories: categories.slice(0, 4),
         items: items.slice(0, 4)
     }];
-    res.json({
+
+    res.status(200).json({
         datosRespuesta,
         ok: true
     })

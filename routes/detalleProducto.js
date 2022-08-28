@@ -8,7 +8,9 @@ const { getDetalleProducto, getDescripcion } = require('../controllers/detallePr
 const { validarCampos } = require('../middlewares/validar-campos');
 
 const router = Router();
-
+/*Se consulta el detalle del producto y con la respuesta se consulta su descripción 
+luego arma la respuesta y la retorna
+*/
 router.get('/:id/',
 //check('id','El id del producto es necesario').not().isEmpty(),
 //validarCampos, 
@@ -34,7 +36,7 @@ async function(req, res, next) {
         }
     };
 
-     res.json({
+     res.status(200).json({
         datosRespuesta,
         ok: true
     })

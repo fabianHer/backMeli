@@ -1,5 +1,4 @@
 /*
-
     ruta: api/buscar/
 */
 
@@ -9,7 +8,7 @@ const { getTodo } = require('../controllers/busquedas');
 
 const router = Router();
 
-
+//Ruta de búqueda de productos según el parámetro enviado
 router.get('/:busqueda', getTodo );
 
 
