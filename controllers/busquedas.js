@@ -32,7 +32,11 @@ const getTodo = async(req , res = response ) => {
             { 
                 id: element.id,
                 title: element.title,
-                price: { currency: element.price, amount: element.installments.amount, decimals: element.installments.quantity },
+                price: { 
+                    currency: element.price ? element.price: '', 
+                    amount: element.installments ? element.installments.amount: '', 
+                    decimals: element.installments ? element.installments.quantity: '' 
+                },
                 picture: element.thumbnail,
                 condition: element.condition,
                 free_shipping: element.shipping.free_shipping
